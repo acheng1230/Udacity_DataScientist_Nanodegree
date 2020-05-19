@@ -81,7 +81,7 @@ def prepare_dataset(input, dfs_type):
         return fanduel_df
 
 # Get feature importances
-def get_feature_importance(regressor, col_names):
+def get_feature_importance(regressor, col_names, num_features):
     # Get numerical feature importances
     importances = list(regressor.feature_importances_)
 
@@ -91,7 +91,7 @@ def get_feature_importance(regressor, col_names):
     # Sort the feature importances by most important first
     feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse=True)
     feature_importance_df = pd.DataFrame(feature_importances, columns=['Feature', 'Importance'])
-    return feature_importance_df.head(10)
+    return feature_importance_df.head(num_features)
 
 #################### Notes #####################################################
 # Sample set vs test set by dates
