@@ -3,9 +3,9 @@ import pandas as pd
 
 ## Minimum number of games played Filter
 # Only pick players that have played in 20 games
-def min_games_filter(df):
+def min_games_filter(df, games_played):
     # Minimum threshoold for number of games played
-    half_filter = (df.PLAYER.value_counts() > 15)
+    half_filter = (df.PLAYER.value_counts() > games_played)
     half_df = pd.DataFrame(half_filter).reset_index().rename({'index':'PLAYER','PLAYER':'HalfSeason'}, axis=1)
     invalid_df = half_df[half_df['HalfSeason'] == False].drop('HalfSeason', axis=1)
     output_df = pd.merge(df, invalid_df, on='PLAYER', how='left', indicator=True).query("_merge == 'left_only'").drop('_merge',1)
