@@ -6,8 +6,8 @@
 1. [Installation](#installation)
 2. [Data](#data)
 3. [Business Questions](#business_questions)
-4. [File Descriptions](#file_descriptions)
-5. [Results](#results)
+4. [Results](#results)
+5. [Credits](#credits)
 
 
 
