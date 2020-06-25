@@ -45,9 +45,11 @@ def build_model():
     pipeline = Pipeline([
             ('vect', CountVectorizer(tokenizer=tokenize)),
             ('tfidif', TfidfTransformer()),
-            ('multiclf', MultiOutputClassifier(RandomForestClassifier()))
+            # Reducing number of estimators to 10
+            # to accomodate GitHub file size restrictions
+            ('multiclf', MultiOutputClassifier(RandomForestClassifier(n_estimators=10)))
             ])
-            
+
     return pipeline
 
 
@@ -57,7 +59,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     for i in range(len(category_names)):
         print("Column:", category_names[i])
         print(classification_report(Y_test[:,i], y_preds[:,i]))
-        print("----------------------------------------------------")
+        print("-----------------------------------------------------")
 
     accuracy = (y_preds == Y_test).mean()
     print("Accuracy:", accuracy)
