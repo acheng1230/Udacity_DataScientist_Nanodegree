@@ -46,7 +46,6 @@ def clean_data(df):
 def save_data(df, database_filename):
     engine = create_engine('sqlite:///{}'.format(database_filename))
     df.to_sql(database_filename, engine, if_exists='replace', index=False)
-    return print("Database saved as {}".format(database_filename))
 
 
 def main():

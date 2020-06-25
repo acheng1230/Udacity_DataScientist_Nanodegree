@@ -1,24 +1,71 @@
 import sys
+import nltk
+import time
+import joblib
+import numpy as np
+import pandas as pd
+import sqlalchemy as db
+nltk.download(['punkt', 'wordnet'])
 
+from sklearn.svm import SVC
+from sqlalchemy import create_engine
+from sklearn.pipeline import Pipeline
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from sklearn.metrics import classification_report
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.multioutput import MultiOutputClassifier
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
 def load_data(database_filepath):
-    pass
+    # load data from database
+    engine = create_engine('sqlite:///{}'.format(database_filepath))
+    df = pd.read_sql_table('DisasterResponse', engine)
+    X = df.message.values
+    Y = df.drop(['id', 'message', 'original', 'genre'], axis=1).values
+    category_names = list(df.drop(['id', 'message', 'original', 'genre'], axis=1))
+    return X, Y, category_names
 
 
 def tokenize(text):
-    pass
+    tokens = word_tokenize(text)
+    lemmatizer = WordNetLemmatizer()
+
+    clean_tokens = []
+    for tok in tokens:
+        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+        clean_tokens.append(clean_tok)
+
+    return clean_tokens
 
 
 def build_model():
-    pass
+    pipeline = Pipeline([
+            ('vect', CountVectorizer(tokenizer=tokenize)),
+            ('tfidif', TfidfTransformer()),
+            ('multiclf', MultiOutputClassifier(RandomForestClassifier()))
+            ])
+            
+    return pipeline
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
-    pass
+    y_preds = model.predict(X_test)
+
+    for i in range(len(category_names)):
+        print("Column:", category_names[i])
+        print(classification_report(Y_test[:,i], y_preds[:,i]))
+        print("----------------------------------------------------")
+
+    accuracy = (y_preds == Y_test).mean()
+    print("Accuracy:", accuracy)
 
 
 def save_model(model, model_filepath):
-    pass
+    # Save the GridSearch model
+    joblib.dump(model, model_filepath)
 
 
 def main():
@@ -27,13 +74,13 @@ def main():
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
         X, Y, category_names = load_data(database_filepath)
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
-        
+
         print('Building model...')
         model = build_model()
-        
+
         print('Training model...')
         model.fit(X_train, Y_train)
-        
+
         print('Evaluating model...')
         evaluate_model(model, X_test, Y_test, category_names)
 
