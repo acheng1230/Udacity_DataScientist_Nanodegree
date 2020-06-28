@@ -11,7 +11,7 @@
 
 #### 1. Overview <a name="summary"></a>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium malesuada metus, non tincidunt ipsum varius eget. Nam in porta magna, sollicitudin scelerisque neque. Suspendisse tempor non eros non luctus. Suspendisse tristique sed massa malesuada tincidunt. Fusce non tellus non justo aliquam ullamcorper. 
+This project used data provided by [Figure Eight](https://appen.com/) to build a machine learning model to properly classify disaster data. The data set contains real messages created during disaster events. A machine learning pipeline is trained on the data set and categorizes these events. Finally, the following web app allows for users to input a new message to get a classification result in several categories. 
 
 #### 2. Requirements <a name="requirements"></a> 
 
@@ -46,18 +46,30 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium malesua
 	│   └── templates	
 	│       ├── go.html	
 	│       └── master.html
+	|
 	├── data
 	│   ├── disaster_categories.csv	
 	│   ├── disaster_messages.csv	
 	│   ├── DisasterResponse.db	
-	│   └── process_data.py	
+	│   └── process_data.py		
+	|
+	├── ipynb
+	│   ├── dataviz_preparation.ipynb
+	│   ├── etlpipeline_preparation.ipynb
+	│   ├── mlpipeline_preparation.ipynb	
+	|
 	├── models
 	│   ├── classifier.pkl	
 	│   └── train_classifier.py
+	|
+	├── screenshots
+	│   ├── barchart.png
+	│   ├── piechart.png	
+	|
 	├── README.md		
     
 #### 5. Screenshots <a name="screenshots"></a>
 
 #### 6. Credits <a name="credits"></a>
 
-This data was provided by FigureEight and starter code by Udacity.
+The data set was provided by [FigureEight](https://appen.com/datasets/combined-disaster-response-data/) and starter code by [Udacity](https://www.udacity.com/).
