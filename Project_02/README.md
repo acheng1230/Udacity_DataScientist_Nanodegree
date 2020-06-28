@@ -1,6 +1,24 @@
-# Disaster Response Pipeline Project
+## Udacity Data Scientist Nanodegree
 
-### Instructions:
+### Project 02 - Disaster Response Pipeline Project
+
+#### Table of Contents
+1. [Project Summary](#summary)
+2. [Installation](#installation)
+3. [Data](#data)
+4. [Project Files](#project_files)
+5. [Credits](#credits)
+
+#### 1. Project Summary <a name="summary"></a>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium malesuada metus, non tincidunt ipsum varius eget. Nam in porta magna, sollicitudin scelerisque neque. Suspendisse tempor non eros non luctus. Suspendisse tristique sed massa malesuada tincidunt. Fusce non tellus non justo aliquam ullamcorper. 
+
+#### 2. Installation <a name="installation"></a>
+There are required packages in order to run 
+
+- Plotly
+
+#### 10. Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
