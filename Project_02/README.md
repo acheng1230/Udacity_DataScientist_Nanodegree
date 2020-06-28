@@ -11,7 +11,7 @@
 
 #### 1. Overview <a name="summary"></a>
 
-This project used data provided by [Figure Eight](https://appen.com/) to build a machine learning model to properly classify disaster data. The data set contains real messages created during disaster events. A machine learning pipeline is trained on the data set and categorizes these events. Finally, the following web app allows for users to input a new message to get a classification result in several categories. 
+This project used data provided by [Figure Eight](https://appen.com/) to build a machine learning model to properly classify disaster data. The data set contains real messages created during disaster events. A machine learning pipeline is trained on the data set and categorizes these events. Finally, the following web app allows for users to input a new message to get a classification result in various categories. 
 
 #### 2. Requirements <a name="requirements"></a> 
 
@@ -56,7 +56,7 @@ This project used data provided by [Figure Eight](https://appen.com/) to build a
 	├── ipynb
 	│   ├── dataviz_preparation.ipynb
 	│   ├── etlpipeline_preparation.ipynb
-	│   ├── mlpipeline_preparation.ipynb	
+	│   └── mlpipeline_preparation.ipynb	
 	|
 	├── models
 	│   ├── classifier.pkl	
@@ -65,10 +65,16 @@ This project used data provided by [Figure Eight](https://appen.com/) to build a
 	├── screenshots
 	│   ├── barchart.png
 	│   ├── piechart.png	
+	│   └── results.png
 	|
 	├── README.md		
     
 #### 5. Screenshots <a name="screenshots"></a>
+##### Classification Results
+![Classification_Results](screenshots/results.png) 
+##### Training Data
+![TrainingData](screenshots/piechart.png)
+![TrainingData](screenshots/barchart.png)  
 
 #### 6. Credits <a name="credits"></a>
 

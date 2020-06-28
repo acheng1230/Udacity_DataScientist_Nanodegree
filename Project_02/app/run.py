@@ -39,8 +39,6 @@ model = joblib.load("../models/classifier.pkl")
 @app.route('/')
 @app.route('/index')
 def index():
-
-    # create visuals
     graphs = return_figures()
 
     # encode plotly graphs in JSON
