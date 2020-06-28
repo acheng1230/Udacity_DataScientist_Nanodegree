@@ -8,12 +8,11 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import Bar, Pie
 from sqlalchemy import create_engine
 
-# Importing the data visualizations from separate python script
+# import data visualizations from separate python script
 from showdata import return_figures
-
 
 app = Flask(__name__)
 
@@ -40,6 +39,8 @@ model = joblib.load("../models/classifier.pkl")
 @app.route('/')
 @app.route('/index')
 def index():
+
+    # create visuals
     graphs = return_figures()
 
     # encode plotly graphs in JSON
