@@ -6,15 +6,25 @@
 {% block content %}
 <br>
 <div class="container">
-    <h4> [DATE PICKER] </h4>
-      <br>
-        <div class="list-group">
-          {% for i, game in games.iterrows() %}
-          <a class="list-group-item list-group-item-action" href="/boxscores/{{ game["GAME_ID"] }}">
-            {{ game["HOME_TEAM_ABBREVIATION"] }} {{ game["HOME_TEAM_PTS"] }} {{ game["VISITOR_TEAM_ABBREVIATION"] }} {{ game["VISITOR_TEAM_PTS"] }}
-          {% endfor %}
+  <h4> [DATE PICKER] </h4>
+    <br>
+      <div class="list-group">
+        {% for i, game in games.iterrows() %}
+          <a class="text-xs-center list-group-item list-group-item-action" href="/boxscores/{{ game["GAME_ID"] }}">
+            <div class="row">
+              <div class="col-xs-4" align="left">
+                {{ game["VISITOR_TEAM_ABBREVIATION"] }} {{ game["VISITOR_TEAM_PTS"] }}
+              </div>
+              <div class="col-xs-4" align="center">
+                {{ game["GAME_STATUS_TEXT"]}}
+              </div>
+              <div class="col-xs-4" align="right">
+                {{ game["HOME_TEAM_ABBREVIATION"] }} {{ game["HOME_TEAM_PTS"] }}
+              </div>
+            </div>
+        {% endfor %}
           </a>
-        </div>
+      </div>
 </div>
 
 {% endblock %}
