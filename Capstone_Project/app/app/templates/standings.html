@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+<!-- Title of page -->
+{% block title %}Standings{% endblock %}
+
+<!-- Content of page -->
+{% block content %}
+<br>
+<div class="container">
+  <h4> Western Conference </h4>
+    <div class="table-responsive">
+    <table class="standings-datatable table table-sm">
+      <!-- Table Header -->
+      <thead>
+        <tr class="bg-dark text-white">
+          <th>Seed</th>
+          <th>Team</th>
+          <th>W-L</th>
+          <th>Win Percentage</th>
+          <th>Home Record</th>
+          <th>Road Record</th>
+        </tr>
+      </thead>
+      <!-- Table Body -->
+      <tbody>
+        {% for i, value in west_standings.iterrows() %}
+        <tr>
+            <td>{{ i+1 }}</td>
+            <td>{{ value["TEAM"] }}</td>
+            <td>{{ value["W"] }}-{{ value["L"] }}</td>
+            <td>{{ value["W_PCT"] }}</td>
+            <td>{{ value["HOME_RECORD"] }}</td>
+            <td>{{ value["ROAD_RECORD"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<br>
+<div class="container">
+  <h4> Eastern Conference </h4>
+    <div class="table-responsive">
+    <table class="standings-datatable table table-sm">
+      <!-- Table Header -->
+      <thead>
+        <tr class="bg-dark text-white">
+          <th>Seed</th>
+          <th>Team</th>
+          <th>W-L</th>
+          <th>Win Percentage</th>
+          <th>Home Record</th>
+          <th>Road Record</th>
+        </tr>
+      </thead>
+      <!-- Table Body -->
+      <tbody>
+        {% for i, value in east_standings.iterrows() %}
+        <tr>
+            <td>{{ i+1 }}</td>
+            <td>{{ value["TEAM"] }}</td>
+            <td>{{ value["W"] }}-{{ value["L"] }}</td>
+            <td>{{ value["W_PCT"] }}</td>
+            <td>{{ value["HOME_RECORD"] }}</td>
+            <td>{{ value["ROAD_RECORD"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
