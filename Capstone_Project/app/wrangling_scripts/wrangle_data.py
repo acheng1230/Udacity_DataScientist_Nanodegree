@@ -27,7 +27,8 @@ def get_games(datestring):
 
     # Simplify columns
     games = game_header[['GAME_SEQUENCE', 'GAME_ID', 'GAME_STATUS_TEXT',
-                         'LIVE_PERIOD', 'HOME_TEAM_ID', 'VISITOR_TEAM_ID']]
+                         'LIVE_PERIOD', 'HOME_TEAM_ID', 'VISITOR_TEAM_ID',
+                         'NATL_TV_BROADCASTER_ABBREVIATION']]
     score = line_score[['GAME_ID', 'TEAM_ID', 'TEAM_ABBREVIATION', 'PTS']]
 
     # Dictionary of game values
@@ -39,6 +40,18 @@ def get_games(datestring):
     games['VISITOR_TEAM_ABBREVIATION'] = games.VISITOR_TEAM_ID.map(team_info)
     games['HOME_TEAM_PTS'] = games.HOME_TEAM_ID.map(team_pts)
     games['VISITOR_TEAM_PTS'] = games.VISITOR_TEAM_ID.map(team_pts)
+
+    # Create a winner column for web layout
+    winners = []
+    for i, value in games.iterrows():
+        if (value["HOME_TEAM_PTS"] > value["VISITOR_TEAM_PTS"]):
+            winners.append(value["HOME_TEAM_ABBREVIATION"])
+        elif (value["HOME_TEAM_PTS"] < value["VISITOR_TEAM_PTS"]):
+            winners.append(value["VISITOR_TEAM_ABBREVIATION"])
+        else:
+            winners.append(None)
+
+    games['WINNER'] = winners
 
     return games
 

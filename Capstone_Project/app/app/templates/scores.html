@@ -7,24 +7,59 @@
 <br>
 <div class="container">
   <h4> [DATE PICKER] </h4>
-    <br>
-      <div class="list-group">
-        {% for i, game in games.iterrows() %}
-          <a class="text-xs-center list-group-item list-group-item-action" href="/boxscores/{{ game["GAME_ID"] }}">
-            <div class="row">
-              <div class="col-xs-4" align="left">
-                {{ game["VISITOR_TEAM_ABBREVIATION"] }} {{ game["VISITOR_TEAM_PTS"] }}
-              </div>
-              <div class="col-xs-4" align="center">
-                {{ game["GAME_STATUS_TEXT"]}}
-              </div>
-              <div class="col-xs-4" align="right">
-                {{ game["HOME_TEAM_ABBREVIATION"] }} {{ game["HOME_TEAM_PTS"] }}
-              </div>
-            </div>
-        {% endfor %}
-          </a>
+  <br>
+  <div class="list-group">
+    {% for i, game in games.iterrows() %}
+    <a class="text-xs-center list-group-item list-group-item-action" href="/boxscores/{{ game["GAME_ID"] }}">
+      <div class="row">
+        {% if game["HOME_TEAM_ABBREVIATION"] == game["WINNER"] %}
+        <div class="col-md-4 text-center">
+          <img class="team-logo" src="static/img/{{ game["HOME_TEAM_ABBREVIATION"] }}.png">
+          <strong>{{ constants.TEAM_ID_DATA[game['HOME_TEAM_ABBREVIATION']]['city'] }}
+            {{ constants.TEAM_ID_DATA[game['HOME_TEAM_ABBREVIATION']]['name'] }}
+            <p>
+              {{ game["HOME_TEAM_PTS"] }}
+            </p>
+          </strong>
+        </div>
+        <div class="col-md-4 text-center">
+          <b>{{ game["GAME_STATUS_TEXT"] }}</b>
+          <br>
+          {{ game["NATL_TV_BROADCASTER_ABBREVIATION"]}}
+        </div>
+        <div class="col-md-4 text-center">
+          <img class="team-logo" src="static/img/{{ game["VISITOR_TEAM_ABBREVIATION"] }}.png">
+          {{ constants.TEAM_ID_DATA[game['VISITOR_TEAM_ABBREVIATION']]['city'] }}
+          {{ constants.TEAM_ID_DATA[game['VISITOR_TEAM_ABBREVIATION']]['name'] }}
+          <p>{{ game["VISITOR_TEAM_PTS"] }}</p>
+        </div>
+        {% else %}
+        <div class="col-md-4 text-center">
+          <img class="team-logo" src="static/img/{{ game["HOME_TEAM_ABBREVIATION"] }}.png">
+          {{ constants.TEAM_ID_DATA[game['HOME_TEAM_ABBREVIATION']]['city'] }}
+          {{ constants.TEAM_ID_DATA[game['HOME_TEAM_ABBREVIATION']]['name'] }}
+          <p>{{ game["HOME_TEAM_PTS"] }}
+          </p>
+        </div>
+        <div class="col-md-4 text-center">
+          <b>{{ game["GAME_STATUS_TEXT"] }}</b>
+          <br>
+          {{ game["NATL_TV_BROADCASTER_ABBREVIATION"]}}
+        </div>
+        <div class="col-md-4 text-center">
+          <img class="team-logo" src="static/img/{{ game["VISITOR_TEAM_ABBREVIATION"] }}.png">
+          <strong>{{ constants.TEAM_ID_DATA[game['VISITOR_TEAM_ABBREVIATION']]['city'] }}
+            {{ constants.TEAM_ID_DATA[game['VISITOR_TEAM_ABBREVIATION']]['name'] }}
+            <p>
+              {{ game["VISITOR_TEAM_PTS"] }}
+            </p>
+          </strong>
+        </div>
+        {% endif %}
       </div>
+      {% endfor %}
+    </a>
+  </div>
 </div>
 
 {% endblock %}

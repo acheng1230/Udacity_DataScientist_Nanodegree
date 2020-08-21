@@ -1,12 +1,11 @@
 from app import app
-from flask import render_template
+from flask import render_template, request, redirect
 
+import datetime
+import dateutil.parser
 from nbapy.scoreboard import Scoreboard
-from wrangling_scripts.constants import CITY_TO_TEAM
-from wrangling_scripts.wrangle_data import get_games
-
-test_gameid = '0021901318'
-test_date = '08-13-2020'
+from wrangling_scripts import constants
+from wrangling_scripts.wrangle_data import *
 
 @app.route("/")
 def index():
@@ -14,20 +13,16 @@ def index():
 
 @app.route("/scores")
 def scores():
+    """
+    NBA Scores Page (Live Scores and Past using Datepicker)
+    """
+    test_gameid = '0021901318'
+    test_date = '08-13-2020'
+
     games = get_games(test_date)
-
-    winners = []
-    for i, value in games.iterrows():
-        if (value["HOME_TEAM_PTS"] > value["VISITOR_TEAM_PTS"]):
-            winners.append(value["HOME_TEAM_ABBREVIATION"])
-        elif (value["HOME_TEAM_PTS"] < value["VISITOR_TEAM_PTS"]):
-            winners.append(value["VISITOR_TEAM_ABBREVIATION"])
-        else:
-            winners.append(None)
-
     return render_template("scores.html",
                            games=games,
-                           winners=winners)
+                           constants=constants)
 
 @app.route('/standings')
 def standings():
@@ -40,5 +35,21 @@ def standings():
 
     return render_template("standings.html",
                            east_standings=east_standings,
-                           west_standings=west_standings,
-                           team=CITY_TO_TEAM)
+                           west_standings=west_standings)
+
+# @app.route('/scores', methods=["GET"])
+# def scores():
+#     if request.method == "GET":
+#         date = request.args.get("date")
+#
+#         games = get_games(date)
+#         # return render_template("scores.html",
+#         #                        datestring=date)
+#
+#     else:
+#         pass
+#
+#     return render_template("scores.html",
+#                            games=games,
+#                            constants=constants,
+#                            datestring=date)

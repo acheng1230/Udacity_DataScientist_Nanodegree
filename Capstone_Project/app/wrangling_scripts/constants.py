@@ -173,7 +173,7 @@ TEAM_ID_DATA = {
         'name': 'Spurs',
     }, 'TOR': {
         'img': 'img/tor.png',
-        'city': 'Chicago',
+        'city': 'Toronto',
         'name': 'Raptors',
     }, 'UTA': {
         'img': 'img/uta.png',

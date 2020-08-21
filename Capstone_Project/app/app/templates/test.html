@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+<!-- Title of page -->
+{% block title %}Test Page{% endblock %}
+
+<!-- Content of page -->
+{% block content %}
+<br>
+<div class="container">
+  <form>
+    <input id="datepicker" width="276" name="date" />
+    <script>
+      $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+      });
+    </script>
+  </form>
+  <br>
+  <h1> {{ datestring }}
+</div>
+{% endblock %}
