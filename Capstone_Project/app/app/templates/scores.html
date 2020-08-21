@@ -6,12 +6,22 @@
 {% block content %}
 <br>
 <div class="container">
-  <h4> [DATE PICKER] </h4>
+  <!-- Scores Page Datepicker -->
+  <form>
+    <input id="datepicker" width="276" name="date" placeholder={{ placeholder }} />
+    <script>
+      $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+      });
+    </script>
+  </form>
   <br>
+  <!-- Game Scores -->
   <div class="list-group">
     {% for i, game in games.iterrows() %}
     <a class="text-xs-center list-group-item list-group-item-action" href="/boxscores/{{ game["GAME_ID"] }}">
       <div class="row">
+        <!-- If Home Team winning, bold Home Team details-->
         {% if game["HOME_TEAM_ABBREVIATION"] == game["WINNER"] %}
         <div class="col-md-4 text-center">
           <img class="team-logo" src="static/img/{{ game["HOME_TEAM_ABBREVIATION"] }}.png">
@@ -33,7 +43,8 @@
           {{ constants.TEAM_ID_DATA[game['VISITOR_TEAM_ABBREVIATION']]['name'] }}
           <p>{{ game["VISITOR_TEAM_PTS"] }}</p>
         </div>
-        {% else %}
+        <!-- If Visitor Team winning, bold Visitor Team details-->
+        {% elif game["VISITOR_TEAM_ABBREVIATION"] == game["WINNER"]%}
         <div class="col-md-4 text-center">
           <img class="team-logo" src="static/img/{{ game["HOME_TEAM_ABBREVIATION"] }}.png">
           {{ constants.TEAM_ID_DATA[game['HOME_TEAM_ABBREVIATION']]['city'] }}
@@ -54,6 +65,27 @@
               {{ game["VISITOR_TEAM_PTS"] }}
             </p>
           </strong>
+        </div>
+        <!-- Else (Game has not started) do not bold either team details -->
+        {% else %}
+        <div class="col-md-4 text-center">
+          <img class="team-logo" src="static/img/{{ game["HOME_TEAM_ABBREVIATION"] }}.png">
+          {{ constants.TEAM_ID_DATA[game['HOME_TEAM_ABBREVIATION']]['city'] }}
+          {{ constants.TEAM_ID_DATA[game['HOME_TEAM_ABBREVIATION']]['name'] }}
+          <p>{{ game["HOME_TEAM_PTS"] }}
+          </p>
+        </div>
+        <div class="col-md-4 text-center">
+          <b>{{ game["GAME_STATUS_TEXT"] }}</b>
+          <br>
+          {{ game["NATL_TV_BROADCASTER_ABBREVIATION"]}}
+        </div>
+        <div class="col-md-4 text-center">
+          <img class="team-logo" src="static/img/{{ game["VISITOR_TEAM_ABBREVIATION"] }}.png">
+          {{ constants.TEAM_ID_DATA[game['VISITOR_TEAM_ABBREVIATION']]['city'] }}
+          {{ constants.TEAM_ID_DATA[game['VISITOR_TEAM_ABBREVIATION']]['name'] }}
+          <p>{{ game["VISITOR_TEAM_PTS"] }}
+          </p>
         </div>
         {% endif %}
       </div>

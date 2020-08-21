@@ -66,6 +66,8 @@ def get_livegames():
     today = datetime.datetime.now()
     today_string = today.strftime("%m-%d-%Y")
     live_games = get_games(today_string)
+    live_games = live_games.fillna(0)
+    live_games[["HOME_TEAM_PTS", "VISITOR_TEAM_PTS"]] = live_games[["HOME_TEAM_PTS", "VISITOR_TEAM_PTS"]].astype(int)
     return live_games
 
 def get_boxscore(game_id):

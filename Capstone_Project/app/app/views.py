@@ -11,18 +11,25 @@ from wrangling_scripts.wrangle_data import *
 def index():
     return render_template("index.html")
 
-@app.route("/scores")
+@app.route('/scores', methods=["GET"])
 def scores():
     """
-    NBA Scores Page (Live Scores and Past using Datepicker)
+    NBA Scores Page (Live scores and past using Datepicker)
     """
-    test_gameid = '0021901318'
-    test_date = '08-13-2020'
+    try:
+        date_list = request.args.getlist('date')
+        date_string = date_list[0]
+        games = get_games(date_string)
 
-    games = get_games(test_date)
+    except:
+        today = datetime.datetime.now()
+        date_string = today.strftime("%m/%d/%Y")
+        games = get_livegames()
+
     return render_template("scores.html",
                            games=games,
-                           constants=constants)
+                           constants=constants,
+                           placeholder=date_string)
 
 @app.route('/standings')
 def standings():
@@ -36,20 +43,3 @@ def standings():
     return render_template("standings.html",
                            east_standings=east_standings,
                            west_standings=west_standings)
-
-# @app.route('/scores', methods=["GET"])
-# def scores():
-#     if request.method == "GET":
-#         date = request.args.get("date")
-#
-#         games = get_games(date)
-#         # return render_template("scores.html",
-#         #                        datestring=date)
-#
-#     else:
-#         pass
-#
-#     return render_template("scores.html",
-#                            games=games,
-#                            constants=constants,
-#                            datestring=date)
