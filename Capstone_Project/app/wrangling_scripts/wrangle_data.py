@@ -79,8 +79,29 @@ def get_boxscore(game_id):
         box_score (pandas df) - Dataframe containing the box score results of Game ID
 
     """
-    box_score = game.BoxScore(game_id).players_stats()
-    return box_score
+    boxscore = game.BoxScore(game_id).players_stats()
+
+    # Data cleaning
+    boxscore = boxscore.fillna(0)
+    float_scores = boxscore.select_dtypes('float')
+    headers = boxscore.columns.values
+
+    # Keep PCT as floats
+    pct_df = float_scores.filter(regex='PCT')
+    pct_cols = pct_df.columns.values
+    boxscore.drop(pct_cols, axis=1, inplace=True)
+    boxscore = pd.concat([boxscore, pct_df], axis=1)
+
+    # Convert stats to ints
+    int_df = float_scores.astype(int).drop(pct_cols, axis=1)
+    int_cols = int_df.columns.values
+    boxscore.drop(int_cols, axis=1, inplace=True)
+    boxscore = pd.concat([boxscore, int_df], axis=1)
+
+    # Keep original order of headers
+    boxscore = boxscore[headers]
+    team1, team2 = boxscore.groupby("TEAM_ID")
+    return team1[1], team2[1]
 
 def get_teamstats(game_id):
     """

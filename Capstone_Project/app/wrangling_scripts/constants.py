@@ -364,11 +364,11 @@ TEAM_ID_TO_NAME = {
         'abbrev': 'IND',
         'img': 'img/ind.png',
     }, '1610612746': {
-        'team-name': 'LA Clippers',
+        'team-name': 'Los Angeles Clippers',
         'abbrev': 'LAC',
         'img': 'img/lac.png',
     }, '1610612747': {
-        'team-name': 'LA Lakers',
+        'team-name': 'Los Angeles Lakers',
         'abbrev': 'LAL',
         'img': 'img/lal.png',
     }, '1610612763': {

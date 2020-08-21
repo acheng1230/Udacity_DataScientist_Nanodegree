@@ -4,5 +4,153 @@
 
 <!-- Content of page -->
 {% block content %}
+<br>
+<!-- Box Score -->
+<div class="container">
+  {% for i, value in team_stats.iterrows() %}
+  <div class="row">
+    <div class="col-md-12">
+      <img class="team-logo" src="/static/img/{{ value["TEAM_ABBREVIATION"] }}.png">
+      <h5> {{ value['TEAM_CITY'] }} {{ value['TEAM_NAME'] }} </h5>
+      <p>
+        {{ value["PTS"] }}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+  <br>
+  <div class="container">
+    <!-- Four Factors + Youtube Video-->
+    <!-- Four Factors-->
+    <div class="col-lg-8"
+    <h4> Four Factors </h4>
+    </div>
+    <!-- Youtube Highlights-->
+    <div class="col-lg-4"
+    <h4> Youtube Highlights </h4>
+    </div>
+  </div>
+  <hr>
+  <!-- Box Score Stats-->
+  <div class="container">
+    <br>
+    <h4>{{ team1_name }}</h4>
+      <div class="table-responsive-md">
+      <table class="boxscore-datatable table-striped table-bordered">
+        <!-- Table Header -->
+        <thead>
+          <tr class="bg-dark text-white">
+            <th>PLAYER</th>
+            <th>MIN</th>
+            <th>FGM</th>
+            <th>FGA</th>
+            <th>FG%</th>
+            <th>3PM</th>
+            <th>3PA</th>
+            <th>3P%</th>
+            <th>FTM</th>
+            <th>FTA</th>
+            <th>FT%</th>
+            <th>ORB</th>
+            <th>DRB</th>
+            <th>REB</th>
+            <th>AST</th>
+            <th>STL</th>
+            <th>BLK</th>
+            <th>TOV</th>
+            <th>PF</th>
+            <th>PTS</th>
+            <th>+/-</th>
+          </tr>
+        </thead>
+        <!-- Table Body -->
+        <tbody>
+          {% for i, value in team1.iterrows() %}
+          <tr>
+              <td>{{ value["PLAYER_NAME"] }}</td>
+              <td>{{ value["MIN"] }}</td>
+              <td>{{ value["FGM"] }}</td>
+              <td>{{ value["FGA"] }}</td>
+              <td>{{ value["FG_PCT"] }}</td>
+              <td>{{ value["FG3M"] }}</td>
+              <td>{{ value["FG3A"] }}</td>
+              <td>{{ value["FG3_PCT"] }}</td>
+              <td>{{ value["FTM"] }}</td>
+              <td>{{ value["FTA"] }}</td>
+              <td>{{ value["FT_PCT"] }}</td>
+              <td>{{ value["OREB"] }}</td>
+              <td>{{ value["DREB"] }}</td>
+              <td>{{ value["REB"] }}</td>
+              <td>{{ value["AST"] }}</td>
+              <td>{{ value["STL"] }}</td>
+              <td>{{ value["BLK"] }}</td>
+              <td>{{ value["TO"] }}</td>
+              <td>{{ value["PF"] }}</td>
+              <td>{{ value["PTS"] }}</td>
+              <td>{{ value["PLUS_MINUS"] }}</td>
+          </tr>
+          {% endfor %}
+      </table>
+      <br>
+      <h4>{{ team2_name }}</h4>
+        <div class="table-responsive-md">
+        <table class="boxscore-datatable table-striped table-bordered">
+          <!-- Table Header -->
+          <thead>
+            <tr class="bg-dark text-white">
+              <th>PLAYER</th>
+              <th>MIN</th>
+              <th>FGM</th>
+              <th>FGA</th>
+              <th>FG%</th>
+              <th>3PM</th>
+              <th>3PA</th>
+              <th>3P%</th>
+              <th>FTM</th>
+              <th>FTA</th>
+              <th>FT%</th>
+              <th>ORB</th>
+              <th>DRB</th>
+              <th>REB</th>
+              <th>AST</th>
+              <th>STL</th>
+              <th>BLK</th>
+              <th>TOV</th>
+              <th>PF</th>
+              <th>PTS</th>
+              <th>+/-</th>
+            </tr>
+          </thead>
+          <!-- Table Body -->
+          <tbody>
+            {% for i, value in team2.iterrows() %}
+            <tr>
+                <td>{{ value["PLAYER_NAME"] }}</td>
+                <td>{{ value["MIN"] }}</td>
+                <td>{{ value["FGM"] }}</td>
+                <td>{{ value["FGA"] }}</td>
+                <td>{{ value["FG_PCT"] }}</td>
+                <td>{{ value["FG3M"] }}</td>
+                <td>{{ value["FG3A"] }}</td>
+                <td>{{ value["FG3_PCT"] }}</td>
+                <td>{{ value["FTM"] }}</td>
+                <td>{{ value["FTA"] }}</td>
+                <td>{{ value["FT_PCT"] }}</td>
+                <td>{{ value["OREB"] }}</td>
+                <td>{{ value["DREB"] }}</td>
+                <td>{{ value["REB"] }}</td>
+                <td>{{ value["AST"] }}</td>
+                <td>{{ value["STL"] }}</td>
+                <td>{{ value["BLK"] }}</td>
+                <td>{{ value["TO"] }}</td>
+                <td>{{ value["PF"] }}</td>
+                <td>{{ value["PTS"] }}</td>
+                <td>{{ value["PLUS_MINUS"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+  </div>
+  <br>
 
 {% endblock %}
