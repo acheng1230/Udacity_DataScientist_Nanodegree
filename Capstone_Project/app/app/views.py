@@ -49,20 +49,22 @@ def boxscores(gameid):
     """
     NBA Box Scores Page (Team Stats, Four Factors, Box Scores and Highlights)
     """
-    # Team Stats
-    team_stats = get_teamstats(gameid)
-
     # Box Scores
-    team1, team2 = get_boxscore(gameid)
+    team1, team2, summary = get_boxscore(gameid)
     team1_id = str(team1['TEAM_ID'].unique()[0])
     team1_name = constants.TEAM_ID_TO_NAME[team1_id]['team-name']
+    team1_abbrev = constants.TEAM_ID_TO_NAME[team1_id]['abbrev']
+
     team2_id = str(team2['TEAM_ID'].unique()[0])
     team2_name = constants.TEAM_ID_TO_NAME[team2_id]['team-name']
+    team2_abbrev = constants.TEAM_ID_TO_NAME[team2_id]['abbrev']
 
     return render_template("boxscores.html",
                            constants=constants,
-                           team_stats=team_stats,
                            team1=team1,
                            team2=team2,
                            team1_name=team1_name,
-                           team2_name=team2_name)
+                           team2_name=team2_name,
+                           team1_abbrev=team1_abbrev,
+                           team2_abbrev=team2_abbrev,
+                           summary=summary)

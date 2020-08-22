@@ -101,7 +101,11 @@ def get_boxscore(game_id):
     # Keep original order of headers
     boxscore = boxscore[headers]
     team1, team2 = boxscore.groupby("TEAM_ID")
-    return team1[1], team2[1]
+
+    # Game summary
+    summary = game.Info(game_id).game_summary()
+    
+    return team1[1], team2[1], summary
 
 def get_teamstats(game_id):
     """

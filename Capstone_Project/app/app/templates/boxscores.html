@@ -7,17 +7,22 @@
 <br>
 <!-- Box Score -->
 <div class="container">
-  {% for i, value in team_stats.iterrows() %}
   <div class="row">
-    <div class="col-md-12">
-      <img class="team-logo" src="/static/img/{{ value["TEAM_ABBREVIATION"] }}.png">
-      <h5> {{ value['TEAM_CITY'] }} {{ value['TEAM_NAME'] }} </h5>
-      <p>
-        {{ value["PTS"] }}
-      </p>
+    <div class="col-5 text-center">
+      <img class="boxscore-team-logo" src="/static/img/{{ team1_abbrev }}.png">
+      <h4> {{ team1_name }} </h4>
+      <h5> {{ team1["PTS"].sum() }} </h5>
+    </div>
+    <div class="col-2 card border-0 text-center justify-content-center">
+      <h5> {{ summary["GAME_STATUS_TEXT"].unique()[0] }} </h5>
+      <small> {{ summary["NATL_TV_BROADCASTER_ABBREVIATION"].unique()[0] }} </small>
+    </div>
+    <div class="col-5 text-center">
+      <img class="boxscore-team-logo" src="/static/img/{{ team2_abbrev }}.png">
+      <h4> {{ team2_name }} </h4>
+      <h5> {{ team2["PTS"].sum() }} </h5>
     </div>
   </div>
-  {% endfor %}
 </div>
   <br>
   <div class="container">

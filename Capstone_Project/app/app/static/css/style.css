@@ -5,6 +5,15 @@ img.team-logo {
     margin-bottom: px;
 }
 
+img.boxscore-team-logo {
+  width: 70px;
+  height: 70px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
 table.boxscore-datatable {
   width: 100%;
   height: 100%;
