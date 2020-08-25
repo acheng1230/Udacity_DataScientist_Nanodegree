@@ -68,3 +68,16 @@ def boxscores(gameid):
                            team1_abbrev=team1_abbrev,
                            team2_abbrev=team2_abbrev,
                            summary=summary)
+
+@app.route("/test")
+def test():
+    test_gameid = '0021901318'
+    stats = get_teamstats(test_gameid)
+
+    # Box Scores
+    team1, team2, summary = get_boxscore(test_gameid)
+    team1_id = str(team1['TEAM_ID'].unique()[0])
+    team1_name = constants.TEAM_ID_TO_NAME[team1_id]['team-name']
+    team1_abbrev = constants.TEAM_ID_TO_NAME[team1_id]['abbrev']
+
+    return render_template("test.html")

@@ -6,14 +6,13 @@
 {% block content %}
 <br>
 <div class="container">
-  <form>
-    <input id="datepicker" width="276" name="date" placeholder={{ datestring }} />
-    <script>
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
-    </script>
-  </form>
+    <h5> Test Data Viz </h5>
+  <div id="tester" style="width:600px;height:250px;">
+  </div>
   <br>
+  <div id="myDiv" style="width:600px;height:250px;">
+  </div>
+  <script src="/static/js/tester.js">
+  </script>
 </div>
 {% endblock %}

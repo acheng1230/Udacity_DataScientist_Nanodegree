@@ -41,15 +41,21 @@ def get_games(datestring):
     games['HOME_TEAM_PTS'] = games.HOME_TEAM_ID.map(team_pts)
     games['VISITOR_TEAM_PTS'] = games.VISITOR_TEAM_ID.map(team_pts)
 
+    # If games have not started yet, replace the None value with 0
+    for i, row in games.iterrows():
+        if row['HOME_TEAM_PTS'] is None:
+            games['HOME_TEAM_PTS'].fillna(value=0, inplace=True)
+            games['VISITOR_TEAM_PTS'].fillna(value=0, inplace=True)
+
     # Create a winner column for web layout
     winners = []
     for i, value in games.iterrows():
-        if (value["HOME_TEAM_PTS"] > value["VISITOR_TEAM_PTS"]):
+        if value["HOME_TEAM_PTS"] > value["VISITOR_TEAM_PTS"]:
             winners.append(value["HOME_TEAM_ABBREVIATION"])
-        elif (value["HOME_TEAM_PTS"] < value["VISITOR_TEAM_PTS"]):
+        elif value["HOME_TEAM_PTS"] < value["VISITOR_TEAM_PTS"]:
             winners.append(value["VISITOR_TEAM_ABBREVIATION"])
         else:
-            winners.append(None)
+            winners.append('None')
 
     games['WINNER'] = winners
 
@@ -104,7 +110,7 @@ def get_boxscore(game_id):
 
     # Game summary
     summary = game.Info(game_id).game_summary()
-    
+
     return team1[1], team2[1], summary
 
 def get_teamstats(game_id):

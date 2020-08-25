@@ -43,7 +43,7 @@
           {{ constants.TEAM_ID_DATA[game['VISITOR_TEAM_ABBREVIATION']]['name'] }}
           <p>{{ game["VISITOR_TEAM_PTS"] }}</p>
         </div>
-        <!-- If Visitor Team winning, bold Visitor Team details-->
+        <!-- Else If Visitor Team winning, bold Visitor Team details-->
         {% elif game["VISITOR_TEAM_ABBREVIATION"] == game["WINNER"]%}
         <div class="col-md-4 text-center">
           <img class="team-logo" src="static/img/{{ game["HOME_TEAM_ABBREVIATION"] }}.png">
