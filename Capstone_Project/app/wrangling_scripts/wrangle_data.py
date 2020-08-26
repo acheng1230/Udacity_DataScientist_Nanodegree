@@ -1,10 +1,14 @@
+import json
+import plotly
 import nbapy
 import datetime
 import warnings
 import pandas as pd
 import dateutil.parser
 from nbapy import game
+import plotly.graph_objs as go
 from nbapy.scoreboard import Scoreboard
+from wrangling_scripts import constants
 
 pd.set_option('max_columns', None)
 pd.options.mode.chained_assignment = None
@@ -123,7 +127,9 @@ def get_teamstats(game_id):
 
     """
     team_stats = game.BoxScore(game_id).team_stats()
-    return team_stats
+    team_stats['TEAM_FULL_NAME'] = team_stats['TEAM_CITY'] + " " + team_stats['TEAM_NAME']
+    team1, team2 = team_stats.groupby("TEAM_ID")
+    return team1[1], team2[1]
 
 def get_linescore(game_id):
     """
@@ -136,3 +142,109 @@ def get_linescore(game_id):
     """
     line_score = game.Info(game_id).line_score()
     return line_score
+
+def create_teamstats_barchart(game_id):
+    """
+    Creates two Plotly bar charts
+
+    Input:
+        game_id (str) - Game ID to pull team stats data
+
+    Output:
+        list (dict) - List containing the two Plotly visualizations
+    """
+    team1, team2 = get_teamstats(game_id)
+    #teamstats_cols = ['TEAM_ABBREVIATION', 'REB']
+
+    t1_name = team1['TEAM_FULL_NAME'].values[0]
+    t1_id = str(team1['TEAM_ID'].values[0])
+    team1 = team1[['REB', 'AST', 'STL', 'BLK', 'TO']]
+    df1 = team1.T.reset_index().rename(columns={'index':'Columns', 1:'Count'})
+
+    t2_name = team2['TEAM_FULL_NAME'].values[0]
+    t2_id = str(team2['TEAM_ID'].values[0])
+    team2 = team2[['REB', 'AST', 'STL', 'BLK', 'TO']]
+    df2 = team2.T.reset_index().rename(columns={'index':'Columns', 0:'Count'})
+
+    data1 = [
+        go.Bar(
+            x=df1['Columns'], # assign x as the dataframe column 'x'
+            y=df1['Count'],
+            name=t1_name,
+            marker={
+                'color': constants.TEAM_ID_TO_NAME[t1_id]['color']
+            }
+            )
+        ]
+
+    data2 = [
+        go.Bar(
+            x=df2['Columns'], # assign x as the dataframe column 'x'
+            y=df2['Count'],
+            name=t2_name,
+            marker={
+                'color': constants.TEAM_ID_TO_NAME[t2_id]['color']
+            }
+            )
+        ]
+
+    graphJSON1 = json.dumps(data1, cls=plotly.utils.PlotlyJSONEncoder)
+    graphJSON2 = json.dumps(data2, cls=plotly.utils.PlotlyJSONEncoder)
+
+    res1 = json.loads(graphJSON1)
+    res2 = json.loads(graphJSON2)
+
+    return res1[0], res2[0]
+
+def create_teampct_barchart(game_id):
+    """
+    Creates two Plotly bar charts
+
+    Input:
+        game_id (str) - Game ID to pull team stats data
+
+    Output:
+        list (dict) - List containing the two Plotly visualizations
+    """
+    team1, team2 = get_teamstats(game_id)
+    #teamstats_cols = ['TEAM_ABBREVIATION', 'REB']
+
+    t1_name = team1['TEAM_ABBREVIATION'].values[0]
+    t1_id = str(team1['TEAM_ID'].values[0])
+    team1 = team1[['FG_PCT', 'FG3_PCT', 'FT_PCT']]
+    df1 = team1.T.reset_index().rename(columns={'index':'Columns', 1:'Count'})
+
+    t2_name = team2['TEAM_ABBREVIATION'].values[0]
+    t2_id = str(team2['TEAM_ID'].values[0])
+    team2 = team2[['FG_PCT', 'FG3_PCT', 'FT_PCT']]
+    df2 = team2.T.reset_index().rename(columns={'index':'Columns', 0:'Count'})
+
+    data1 = [
+        go.Bar(
+            x=df1['Columns'], # assign x as the dataframe column 'x'
+            y=df1['Count'],
+            name=t1_name,
+            marker={
+                'color': constants.TEAM_ID_TO_NAME[t1_id]['color']
+            }
+            )
+        ]
+
+    data2 = [
+        go.Bar(
+            x=df2['Columns'], # assign x as the dataframe column 'x'
+            y=df2['Count'],
+            name=t2_name,
+            marker={
+                'color': constants.TEAM_ID_TO_NAME[t2_id]['color']
+            }
+            )
+        ]
+
+    graphJSON1 = json.dumps(data1, cls=plotly.utils.PlotlyJSONEncoder)
+    graphJSON2 = json.dumps(data2, cls=plotly.utils.PlotlyJSONEncoder)
+
+    res1 = json.loads(graphJSON1)
+    res2 = json.loads(graphJSON2)
+
+    return res1[0], res2[0]

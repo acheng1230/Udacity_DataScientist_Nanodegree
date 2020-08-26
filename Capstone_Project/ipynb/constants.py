@@ -319,121 +319,151 @@ TEAM_ID_TO_NAME = {
         'team-name': 'Atlanta Hawks',
         'abbrev': 'ATL',
         'img': 'img/atl.png',
+        'color': 'rgb(204, 9, 47)'
     }, '1610612738': {
         'team-name': 'Boston Celtics',
         'abbrev': 'BOS',
         'img': 'img/bos.png',
+        'color': 'rgb(0, 136, 83)'
     }, '1610612751': {
         'team-name': 'Brooklyn Nets',
         'abbrev': 'BKN',
         'img': 'img/bkn.png',
+        'color': 'rgb(0, 0, 0)'
     }, '1610612766': {
         'team-name': 'Charlotte Hornets',
         'abbrev': 'CHA',
         'img': 'img/cha.png',
+        'color': 'rgb(29, 140, 171)'
     }, '1610612741': {
         'team-name': 'Chicago Bulls',
         'abbrev': 'CHI',
         'img': 'img/chi.png',
+        'color': 'rgb(188, 3, 43)'
     }, '1610612739': {
         'team-name': 'Cleveland Cavaliers',
         'abbrev': 'CLE',
         'img': 'img/cle.png',
+        'color': 'rgb(134, 0, 56)'        
     }, '1610612742': {
         'team-name': 'Dallas Mavericks',
         'abbrev': 'DAL',
         'img': 'img/dal.png',
+        'color': 'rgb(16, 97, 172)'         
     }, '1610612743': {
         'team-name': 'Denver Nuggets',
         'abbrev': 'DEN',
         'img': 'img/den.png',
+        'color': 'rgb(253, 184, 39)'           
     }, '1610612765': {
         'team-name': 'Detroit Pistons',
         'abbrev': 'DET',
         'img': 'img/det.png',
+        'color': 'rgb(237, 23, 76)'         
     }, '1610612744': {
         'team-name': 'Golden State Warriors',
         'abbrev': 'GSW',
         'img': 'img/gsw.png',
+        'color': 'rgb(0, 107, 182)'   
     }, '1610612745': {
         'team-name': 'Houston Rockets',
         'abbrev': 'HOU',
         'img': 'img/hou.png',
+        'color': 'rgb(211, 17, 69)' 
     }, '1610612754': {
         'team-name': 'Indiana Pacers',
         'abbrev': 'IND',
         'img': 'img/ind.png',
+        'color': 'rgb(255, 197, 38)' 
     }, '1610612746': {
         'team-name': 'Los Angeles Clippers',
         'abbrev': 'LAC',
         'img': 'img/lac.png',
+        'color': 'rgb(216, 29, 71)'
     }, '1610612747': {
         'team-name': 'Los Angeles Lakers',
         'abbrev': 'LAL',
         'img': 'img/lal.png',
+        'color': 'rgb(253, 184, 39)'        
     }, '1610612763': {
         'team-name': 'Memphis Grizzlies',
         'abbrev': 'MEM',
         'img': 'img/mem.png',
+        'color': 'rgb(35, 55, 91)'
     }, '1610612748': {
         'team-name': 'Miami Heat',
         'abbrev': 'MIA',
         'img': 'img/mia.png',
+        'color': 'rgb(191, 47, 56)'
     }, '1610612749': {
         'team-name': 'Milwaukee Bucks',
         'abbrev': 'MIL',
         'img': 'img/mil.png',
+        'color': 'rgb(0, 70, 27)'    
     }, '1610612750': {
         'team-name': 'Minnesota Timberwolves',
         'abbrev': 'MIN',
         'img': 'img/min.png',
+        'color': 'rgb(0, 81, 131)'   
     }, '1610612740': {
         'team-name': 'New Orleans Pelicans',
         'abbrev': 'NOP',
         'img': 'img/nop.png',
+        'color': 'rgb(181, 152, 90)'   
     }, '1610612752': {
         'team-name': 'New York Knicks',
         'abbrev': 'NYK',
         'img': 'img/nyk.png',
+        'color': 'rgb(244, 131, 40)'
     }, '1610612760': {
         'team-name': 'OKC Thunder',
         'abbrev': 'OKC',
         'img': 'img/okc.png',
+        'color': 'rgb(240, 83, 51)'
     }, '1610612753': {
         'team-name': 'Orlando Magic',
         'abbrev': 'ORL',
         'img': 'img/orl.png',
+        'color': 'rgb(0, 117, 189)'        
     }, '1610612755': {
         'team-name': 'Philadelphia 76ers',
         'abbrev': 'PHI',
         'img': 'img/phi.png',
+        'color': 'rgb(0, 61, 165)'  
     }, '1610612756': {
         'team-name': 'Phoenix Suns',
         'abbrev': 'PHX',
         'img': 'img/phx.png',
+        'color': 'rgb(230, 98, 38)'          
     }, '1610612757': {
         'team-name': 'Portland Trailblazers',
         'abbrev': 'POR',
         'img': 'img/por.png',
+        'color': 'rgb(225, 58, 62)'
     }, '1610612758': {
         'team-name': 'Sacramento Kings',
         'abbrev': 'SAC',
         'img': 'img/sac.png',
+        'color': 'rgb(114, 76, 159)'        
     }, '1610612759': {
         'team-name': 'San Antonio Spurs',
         'abbrev': 'SAS',
         'img': 'img/sas.png',
+        'color': 'rgb(132, 136, 139)' 
     }, '1610612761': {
         'team-name': 'Toronto Raptors',
         'abbrev': 'TOR',
         'img': 'img/tor.png',
+        'color': 'rgb(190, 15, 52)'
     }, '1610612762': {
         'team-name': 'Utah Jazz',
         'abbrev': 'UTA',
         'img': 'img/uta.png',
+        'color': 'rgb(12, 35, 64)'
     }, '1610612764': {
         'team-name': 'Washington Wizards',
         'abbrev': 'WAS',
         'img': 'img/was.png',
+        'color': 'rgb(229, 24, 55)'
     }
 }

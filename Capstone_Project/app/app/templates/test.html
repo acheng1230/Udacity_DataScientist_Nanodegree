@@ -6,13 +6,39 @@
 {% block content %}
 <br>
 <div class="container">
-    <h5> Test Data Viz </h5>
-  <div id="tester" style="width:600px;height:250px;">
+  <div class="row">
+    <!-- Team Stats -->
+    <div class="col-7">
+      <div class="chart" id="teamstats_bar">
+          <script>
+              var trace1 = {{ bar1 | safe }};
+              var trace2 = {{ bar2 | safe }};
+
+              var data = [trace1, trace2];
+              var layout = {title: 'Team Stats', barmode: 'group'};
+
+              Plotly.plot('teamstats_bar', data, layout);
+          </script>
+      </div>
+    </div>
+    <!-- Team Percents -->
+    <div class="col-5">
+
+      <div class="chart" id="teampct_bar">
+          <script>
+              var trace1 = {{ pct_bar1 | safe }};
+              var trace2 = {{ pct_bar2 | safe }};
+
+              var data = [trace1, trace2];
+              var layout = {title: 'Team Percentages', barmode: 'group'};
+
+              Plotly.plot('teampct_bar', data, layout);
+          </script>
+      </div>
+
+
+
+    </div>
   </div>
-  <br>
-  <div id="myDiv" style="width:600px;height:250px;">
-  </div>
-  <script src="/static/js/tester.js">
-  </script>
 </div>
 {% endblock %}

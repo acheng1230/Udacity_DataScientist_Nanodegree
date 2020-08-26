@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, request, redirect
 
-import datetime
+import datetime, json, plotly
 import dateutil.parser
 from nbapy.scoreboard import Scoreboard
 from wrangling_scripts import constants
@@ -59,6 +59,10 @@ def boxscores(gameid):
     team2_name = constants.TEAM_ID_TO_NAME[team2_id]['team-name']
     team2_abbrev = constants.TEAM_ID_TO_NAME[team2_id]['abbrev']
 
+    # Data Visualizations
+    bar1, bar2 = create_teamstats_barchart(gameid)
+    pct_bar1, pct_bar2 = create_teampct_barchart(gameid)
+
     return render_template("boxscores.html",
                            constants=constants,
                            team1=team1,
@@ -67,17 +71,21 @@ def boxscores(gameid):
                            team2_name=team2_name,
                            team1_abbrev=team1_abbrev,
                            team2_abbrev=team2_abbrev,
-                           summary=summary)
+                           summary=summary,
+                           bar1=bar1,
+                           bar2=bar2,
+                           pct_bar1=pct_bar1,
+                           pct_bar2=pct_bar2)
 
 @app.route("/test")
 def test():
     test_gameid = '0021901318'
-    stats = get_teamstats(test_gameid)
+    bar1, bar2 = create_teamstats_barchart(test_gameid)
 
-    # Box Scores
-    team1, team2, summary = get_boxscore(test_gameid)
-    team1_id = str(team1['TEAM_ID'].unique()[0])
-    team1_name = constants.TEAM_ID_TO_NAME[team1_id]['team-name']
-    team1_abbrev = constants.TEAM_ID_TO_NAME[team1_id]['abbrev']
+    pct_bar1, pct_bar2 = create_teampct_barchart(test_gameid)
 
-    return render_template("test.html")
+    return render_template("test.html",
+                           bar1=bar1,
+                           bar2=bar2,
+                           pct_bar1=pct_bar1,
+                           pct_bar2=pct_bar2)

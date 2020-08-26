@@ -25,19 +25,43 @@
   </div>
 </div>
 <br>
-<!-- Four Factors + Youtube Video-->
-<!--<div class="container">-->
-  <!--<div class="row">-->
-    <!-- Four Factors--><!-->
-    <!--<div class="col-8">-->
-      <!--<h4> Data Visualizations </h4>-->
-    <!--</div>-->
-    <!-- Youtube Highlights-->
-    <!--<div class="col-4">-->
-      <!--<h4> Youtube Highlights </h4>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div><!-->
+<!-- Team Stats + Team Percents -->
+<div class="container">
+  <hr>
+    <h5> Summary Stats </h5>
+  <div class="row">
+    <!-- Team Stats -->
+    <div class="col-7">
+      <div class="chart" id="teamstats_bar">
+          <script>
+              var trace1 = {{ bar1 | safe }};
+              var trace2 = {{ bar2 | safe }};
+
+              var data = [trace1, trace2];
+              var layout = {barmode: 'group',
+                            showlegend: false};
+
+              Plotly.plot('teamstats_bar', data, layout);
+          </script>
+      </div>
+    </div>
+    <!-- Team Percents -->
+    <div class="col-5">
+      <div class="chart" id="teampct_bar">
+          <script>
+              var trace1 = {{ pct_bar1 | safe }};
+              var trace2 = {{ pct_bar2 | safe }};
+
+              var data = [trace1, trace2];
+              var layout = {barmode: 'group'};
+
+              Plotly.plot('teampct_bar', data, layout);
+          </script>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
 <hr>
   <!-- Box Score Stats-->
   <div class="container">
