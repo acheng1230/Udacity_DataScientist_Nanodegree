@@ -6,39 +6,9 @@
 {% block content %}
 <br>
 <div class="container">
-  <div class="row">
-    <!-- Team Stats -->
-    <div class="col-7">
-      <div class="chart" id="teamstats_bar">
-          <script>
-              var trace1 = {{ bar1 | safe }};
-              var trace2 = {{ bar2 | safe }};
-
-              var data = [trace1, trace2];
-              var layout = {title: 'Team Stats', barmode: 'group'};
-
-              Plotly.plot('teamstats_bar', data, layout);
-          </script>
-      </div>
-    </div>
-    <!-- Team Percents -->
-    <div class="col-5">
-
-      <div class="chart" id="teampct_bar">
-          <script>
-              var trace1 = {{ pct_bar1 | safe }};
-              var trace2 = {{ pct_bar2 | safe }};
-
-              var data = [trace1, trace2];
-              var layout = {title: 'Team Percentages', barmode: 'group'};
-
-              Plotly.plot('teampct_bar', data, layout);
-          </script>
-      </div>
-
-
-
-    </div>
+  <h1 class="test-text"> Test Text </h1> <!--style="color:red-->
+  <img src="{{ url_for('static', filename='img/atl.png') }}">
+  <p> "{{ url_for('static', filename='css/style.css') }}" </p>
+  <p> "{{ url_for('static', filename='img/atl.png') }}" </p>
   </div>
-</div>
 {% endblock %}

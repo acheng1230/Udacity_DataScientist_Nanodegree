@@ -9,11 +9,7 @@
   <!-- Scores Page Datepicker -->
   <form>
     <input id="datepicker" width="276" name="date-scores" placeholder={{ placeholder }} />
-    <script>
-      $('#datepicker').datepicker({
-        uiLibrary: 'bootstrap4'
-      });
-    </script>
+    <script src="{{ url_for('static', filename='js/datepicker.js') }}"></script>
   </form>
   <br>
   <!-- Game Scores -->
