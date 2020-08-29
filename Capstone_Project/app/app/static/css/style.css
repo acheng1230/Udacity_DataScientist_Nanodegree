@@ -1,3 +1,4 @@
+/* Scores Page */
 img.team-logo {
     width: 40px;
     height: 40px;
@@ -5,6 +6,7 @@ img.team-logo {
     margin-bottom: 5px;
 }
 
+/* Box Score Page Team Logos and Datatables */
 img.boxscore-team-logo {
   width: 70px;
   height: 70px;
@@ -19,6 +21,7 @@ table.boxscore-datatable {
   height: 100%;
 }
 
+/* Home Page Display Image and Text */
 .jumbotron.hero-image {
   background-image: url("/static/img/fbdata_jumbotron.jpg");
   background-size: cover;
@@ -29,4 +32,14 @@ table.boxscore-datatable {
 
 .display-text {
   color: white
+}
+
+div.recent-news {
+  background-color: #D3D3D3;
+}
+
+/* About Page */
+img.about-thumbnail {
+  width: 200px;
+  height: 200px;
 }

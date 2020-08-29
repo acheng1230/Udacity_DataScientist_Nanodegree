@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+<!-- Title of page -->
+{% block title %} Home {% endblock %}
+
+<!-- Content of page -->
+{% block content %}
+<div>
+  <!-- Body -->
+  <body>
+    <main role="main">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron hero-image"> <!--style="background-image: url(../static/img/fbdata_jumbotron.jpg)"-->
+        <div class="container">
+          <h1 class="display-3 display-text">Data Science + Basketball</h1>
+          <p class="display-text">Fastbreak Data is a website showcasing the application of data science techniques to NBA sports analytics.</p>
+        </div>
+      </div>
+      <!-- Body Content -->
+      <div class="container">
+        <div class="row">
+          <!-- Analytics and Features Cards -->
+          <div class="col-md-8">
+            <!-- First Card -->
+            <div class="col-12">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <strong class="d-inline-block mb-2 text-primary"><i class="far fa-chart-bar"></i> Data</strong>
+                  <h3 class="mb-0">
+                    <a class="text-dark" href="#">Analytics</a>
+                  </h3>
+                  <p class="card-text mb-auto">Find out the latest NBA game scores, box scores, and current Western Conference and Eastern Conference standings.</p>
+                  <br>
+                  <p><a class="btn btn-primary" href="/scores" role="button">See more &raquo;</a></p>
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- Second Card -->
+            <div class="col-12">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <strong class="d-inline-block mb-2 text-primary"><i class="fas fa-newspaper"></i> Articles</strong>
+                  <h3 class="mb-0">
+                    <a class="text-dark" href="#">Features</a>
+                  </h3>
+                  <p class="card-text mb-auto">Read up on the latest data science and basketball analysis from this season's games. Learn how data science technqiues can be applied to NBA sports analytics.</p>
+                  <br>
+                  <p><a class="btn btn-primary" href="https://medium.com/fastbreak-data" role="button">See more &raquo;</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent News -->
+          <div class="col-md-4 recent-news">
+            <div class="container rounded">
+              <br>
+              <h4> <i class="fas fa-rss-square"></i> Recent News </h4>
+              <hr>
+              {% for title, link in news %}
+                <a href="{{ link }}">{{ title }}</a>
+                <p></p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <hr>
+        </div>
+    </main>
+  </body>
+</div>
+{% endblock %}

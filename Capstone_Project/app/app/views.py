@@ -1,15 +1,29 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, abort
 
-import datetime, json, plotly
+import feedparser
 import dateutil.parser
+import datetime, json, plotly
 from nbapy.scoreboard import Scoreboard
 from wrangling_scripts import constants
 from wrangling_scripts.wrangle_data import *
 
+
+# Routes for Pages
 @app.route("/")
 def index():
-    return render_template("index.html")
+    feed_url = "https://www.espn.com/espn/rss/nba/news"
+    feed = feedparser.parse(feed_url)
+
+    titles = []
+    links = []
+    for article in feed['entries'][:7]:
+        titles.append(article['title'])
+        links.append(article['links'][0]['href'])
+
+    news = zip(titles, links)
+    return render_template("public/index.html",
+                           news=news)
 
 @app.route("/scores", methods=["GET"])
 def scores():
@@ -26,7 +40,7 @@ def scores():
         date_string = today.strftime("%m/%d/%Y")
         games = get_livegames()
 
-    return render_template("scores.html",
+    return render_template("public/scores.html",
                            games=games,
                            constants=constants,
                            placeholder=date_string)
@@ -40,7 +54,7 @@ def standings():
     east_standings = scoreboard.east_conf_standings_by_day()
     west_standings = scoreboard.west_conf_standings_by_day()
 
-    return render_template("standings.html",
+    return render_template("public/standings.html",
                            east_standings=east_standings,
                            west_standings=west_standings)
 
@@ -63,7 +77,7 @@ def boxscores(gameid):
     bar1, bar2 = create_teamstats_barchart(gameid)
     pct_bar1, pct_bar2 = create_teampct_barchart(gameid)
 
-    return render_template("boxscores.html",
+    return render_template("public/boxscores.html",
                            constants=constants,
                            team1=team1,
                            team2=team2,
@@ -77,15 +91,29 @@ def boxscores(gameid):
                            pct_bar1=pct_bar1,
                            pct_bar2=pct_bar2)
 
+@app.route("/about")
+def about():
+    return render_template("public/about.html")
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("error/404.html"), 404
+
+@app.errorhandler(500)
+def server_error(e):
+    original = getattr(e, "original_exception", None)
+
+    if original is None:
+        # direct 500 error, such as abort(500)
+        return render_template("error/500.html"), 500
+
+    # wrapped unhandled error
+    return render_template("error/500.html", e=original), 500
+
+
+"""
+Test Workspace
+"""
 @app.route("/test")
 def test():
-    test_gameid = '0021901318'
-    bar1, bar2 = create_teamstats_barchart(test_gameid)
-
-    pct_bar1, pct_bar2 = create_teampct_barchart(test_gameid)
-
-    return render_template("test.html",
-                           bar1=bar1,
-                           bar2=bar2,
-                           pct_bar1=pct_bar1,
-                           pct_bar2=pct_bar2)
+    return render_template("test/test.html")
