@@ -22,16 +22,12 @@ table.boxscore-datatable {
 }
 
 /* Home Page Display Image and Text */
-.jumbotron.hero-image {
+.jumbotron {
   background-image: url("/static/img/fbdata_jumbotron.jpg");
   background-size: cover;
   height: 325px;
   /* filter: grayscale(100%); */
-  opacity: 0.7;
-}
-
-.display-text {
-  color: white
+  opacity: 0.9;
 }
 
 div.recent-news {
