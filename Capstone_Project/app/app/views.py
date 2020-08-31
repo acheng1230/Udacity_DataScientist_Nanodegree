@@ -8,6 +8,14 @@ from nbapy.scoreboard import Scoreboard
 from wrangling_scripts import constants
 from wrangling_scripts.wrangle_data import *
 
+# A function that forces recaching every 10 minutes.
+@app.after_request
+def add_header(response):
+    # Add headers to both force latest IE rendering engine or Chrome Frame,
+    # and also to cache the rendered page for 10 minutes.
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
 
 # Routes for Pages
 @app.route("/")

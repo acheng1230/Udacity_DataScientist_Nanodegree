@@ -158,12 +158,12 @@ def create_teamstats_barchart(game_id):
 
     t1_name = team1['TEAM_FULL_NAME'].values[0]
     t1_id = str(team1['TEAM_ID'].values[0])
-    team1 = team1[['REB', 'AST', 'STL', 'BLK', 'TO']]
+    team1 = team1[['REB', 'OREB', 'DREB', 'AST', 'STL', 'BLK', 'TO']]
     df1 = team1.T.reset_index().rename(columns={'index':'Columns', 1:'Count'})
 
     t2_name = team2['TEAM_FULL_NAME'].values[0]
     t2_id = str(team2['TEAM_ID'].values[0])
-    team2 = team2[['REB', 'AST', 'STL', 'BLK', 'TO']]
+    team2 = team2[['REB', 'OREB', 'DREB', 'AST', 'STL', 'BLK', 'TO']]
     df2 = team2.T.reset_index().rename(columns={'index':'Columns', 0:'Count'})
 
     data1 = [
