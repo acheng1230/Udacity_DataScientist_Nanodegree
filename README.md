@@ -1,3 +1,0 @@
-## Udacity Data Scientist Nanodegree
-
-
