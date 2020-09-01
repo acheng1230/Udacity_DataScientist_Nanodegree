@@ -1,6 +1,6 @@
 ## Udacity Data Scientist Nanodegree
 
-![Udacity_DS_Nano_AlexCheng](Udacity-DataScientist-Nanodegree_AlexCheng.pdf)
+![Udacity_DS_Nano_AlexCheng](Udacity-DataScientist-Nanodegree_AlexCheng.png)
 
 #### Table of Contents
 1. [Overview](#summary)
@@ -12,7 +12,7 @@
 
 #### 1. Overview <a name="summary"></a>
 
-The below lists the projects completed as part of Udacity's Data Scientist Nanodegree. Each project contains a README.md file for more details. 
+The Udacity Data Scientist Nanodegree is an advanced program designed to prepare students for data scientist jobs. The below lists the projects completed. Each project contains a README.md file for more details. 
 
 #### 2. Project 01: Write a  Data Science Blog Post <a name="project_1"></a>
 A dataset was chosen with three business questions to answer. Analysis of the data and insights were shared in a written blog post to a technical audience.
