@@ -22,21 +22,21 @@ The metrics covered here range from team statistics to player statistics. From a
 
 This project is available at [fastbreakdata.herokuapp.com](https://fastbreakdata.herokuapp.com)
 
-**Note:** At the time of this writing, only the local application pulls data as the hosted application shows a ReadTimeout error.
+**Note:** At the time of this writing, only the local application pulls API data as the hosted application shows a ReadTimeout error.
 
 #### 2. Data and Metrics <a name="metrics"></a>
-The data used in this dashboard uses the [`nbapy`](https://github.com/jtpavlock/nbapy) API to source game information for any specific date. Using a Javascript-enabled date picker, a user can select a date from a dropdown calendar to understand game results, team analysis, and player statistics. 
+The data used in this dashboard uses the [`nbapy`](https://github.com/jtpavlock/nbapy) API to source game information for any specific date. Using a Javascript-enabled date picker, a user can select a date from a dropdown calendar to understand game results, team analysis, and player statistics. In addition, this dashboard sources NBA data to display team standings for the current season.
 
-The Plotly data visualizations included in the box scores illustrate a comparison of two teams in counting statistics (i.e. rebounds, assists, steals, blocks, turnovers) and team percentages (field goal %, free throw %, and 3 point %).
+The Plotly data visualizations included in the box scores illustrate a comparison of two teams in counting statistics (i.e. rebounds, assists, steals, blocks, turnovers) and team percentages (field goal %, free throw %, and 3 point %). 
 
 ![Fastbreak Data](images/fbdata_boxscores_small.png)
 ![Fastbreak Data](images/fbdata_standings_small.png)
 
 #### 3. Results <a name="results"></a>
 
-This NBA data dashboard showcased game data and results particularly well in a local environment but struggled to perform as consistently in a hosted server. Challenges with understanding the APIs functionality due to restrictions and response timeouts showed limitations in usage. 
+This NBA data dashboard showcased game data and results particularly well in a local environment but struggled to perform as consistently in a hosted server. Challenges with understanding the APIs functionality due to restrictions and response timeouts showed limitations in application usage. 
 
-Various workarounds were attempted to pull data asynchronously in the background using Redis Queue and scaling Heroku’s worker system but to no avail (See [more](https://devcenter.heroku.com/articles/python-rq)). Furthermore, scaling up Heroku’s dynos did not help with the timeout errors as well, and may have led to more costly usage without any performance benefits. Therefore in a production environment, more development and analysis would be needed to expand current application offerings. 
+Various workarounds were attempted to pull data asynchronously in the background using Redis Queue and scaling Heroku’s worker system but to no avail (See [more](https://devcenter.heroku.com/articles/python-rq)). Furthermore, scaling up Heroku’s dynos did not help with the timeout errors as well and may have led to more costly usage without any performance benefits. Therefore in a production environment, more development and analysis would be needed to expand current application offerings. 
 
 There are areas of improvement for this project, mainly determining a API ReadTimeout workaround to enable the data to be available on Heroku. Other areas of improvement could be a diversification of the data visualizations as well as upgrades to the Javascript datepicker to dynamically change pages upon date selection.
 
